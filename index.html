@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2-Look OLL & PLL Reference</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf8f3;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --text-muted: #6b6b6b;
+  --text-dim: #9b9b9b;
+  --border: #e8e2d5;
+  --border-strong: #d4cdb9;
+  --accent: #d97706;
+
+  /* Trigger pill colors */
+  --sexy-bg: #fde2e2;
+  --sexy-fg: #991b1b;
+  --revsexy-bg: #dbe8fe;
+  --revsexy-fg: #1e3a8a;
+  --sledge-bg: #d1f0d9;
+  --sledge-fg: #166534;
+  --hedge-bg: #fde8ba;
+  --hedge-fg: #854d0e;
+  --fruruf-bg: #e4dbfd;
+  --fruruf-fg: #5b21b6;
+  --fatfruruf-bg: #cfc0fb;
+  --fatfruruf-fg: #4c1d95;
+  --sune-bg: #fef3c7;
+  --sune-fg: #92400e;
+  --neutral-bg: #f0ede5;
+  --neutral-fg: #4b4b4b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  margin: 0;
+  padding: 2rem 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+header { margin-bottom: 2rem; }
+
+h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  font-size: 2.4rem;
+  margin: 0 0 0.25rem 0;
+  letter-spacing: -0.02em;
+}
+
+h1 .em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Triggers panel */
+.triggers {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.triggers h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 1.35rem;
+  margin: 0 0 0.25rem 0;
+}
+
+.triggers .lead {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0 0 1rem 0;
+}
+
+.trigger-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+
+@media (max-width: 720px) {
+  .trigger-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.trigger {
+  padding: 0.55rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+.trigger .name {
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.1rem;
+}
+.trigger .moves {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.trigger.sexy { background: var(--sexy-bg); }
+.trigger.sexy .name, .trigger.sexy .moves { color: var(--sexy-fg); }
+.trigger.revsexy { background: var(--revsexy-bg); }
+.trigger.revsexy .name, .trigger.revsexy .moves { color: var(--revsexy-fg); }
+.trigger.sledge { background: var(--sledge-bg); }
+.trigger.sledge .name, .trigger.sledge .moves { color: var(--sledge-fg); }
+.trigger.hedge { background: var(--hedge-bg); }
+.trigger.hedge .name, .trigger.hedge .moves { color: var(--hedge-fg); }
+.trigger.fruruf { background: var(--fruruf-bg); }
+.trigger.fruruf .name, .trigger.fruruf .moves { color: var(--fruruf-fg); }
+.trigger.fatfruruf { background: var(--fatfruruf-bg); }
+.trigger.fatfruruf .name, .trigger.fatfruruf .moves { color: var(--fatfruruf-fg); }
+.trigger.sune { background: var(--sune-bg); }
+.trigger.sune .name, .trigger.sune .moves { color: var(--sune-fg); }
+
+/* Main columns */
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+}
+
+@media (max-width: 960px) {
+  .columns { grid-template-columns: 1fr; }
+  body { padding: 1.5rem 1rem; }
+  h1 { font-size: 2rem; }
+}
+
+section.col > h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 1.6rem;
+  margin: 0 0 0.35rem 0;
+  letter-spacing: -0.01em;
+}
+
+section.col > .col-sub {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin: 0 0 1rem 0;
+}
+
+.group-label {
+  font-family: 'Manrope', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 1.25rem 0 0.6rem 0;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.group-label:first-child { margin-top: 0; }
+
+/* Case card */
+.case {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.85rem;
+  margin-bottom: 0.7rem;
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 0.9rem;
+  align-items: start;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+
+.case:hover {
+  border-color: var(--border-strong);
+}
+
+.case.active {
+  border-color: var(--accent);
+  background: #fff7ec;
+  box-shadow: 0 0 0 2px var(--accent) inset;
+}
+
+.case img {
+  width: 84px;
+  height: 84px;
+  display: block;
+  background: #f5f2ea;
+  border-radius: 4px;
+}
+
+.case-body { min-width: 0; }
+
+.case-name {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0 0 0.35rem 0;
+}
+
+.alg {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin: 0 0 0.4rem 0;
+  word-spacing: 0.05em;
+}
+
+.breakdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.chunk {
+  padding: 2px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.chunk.sexy { background: var(--sexy-bg); color: var(--sexy-fg); }
+.chunk.revsexy { background: var(--revsexy-bg); color: var(--revsexy-fg); }
+.chunk.sledge { background: var(--sledge-bg); color: var(--sledge-fg); }
+.chunk.hedge { background: var(--hedge-bg); color: var(--hedge-fg); }
+.chunk.fruruf { background: var(--fruruf-bg); color: var(--fruruf-fg); }
+.chunk.fatfruruf { background: var(--fatfruruf-bg); color: var(--fatfruruf-fg); }
+.chunk.sune { background: var(--sune-bg); color: var(--sune-fg); }
+.chunk.neutral { background: var(--neutral-bg); color: var(--neutral-fg); }
+.chunk.bare { color: var(--text-dim); padding: 2px 2px; }
+
+.note {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 0.35rem;
+}
+
+footer {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+@media print {
+  body { background: white; padding: 0.5in; }
+  .case, .triggers { break-inside: avoid; }
+  .columns { gap: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>2-Look OLL <span class="em">&amp;</span> PLL</h1>
+  <p class="subtitle">Last-layer reference for CFOP · algorithms broken into named triggers</p>
+</header>
+
+<!-- TRIGGERS -->
+<div class="triggers">
+  <h2>Trigger Vocabulary</h2>
+  <p class="lead">Most of the longer algorithms below are built from these short, named sequences. Learn these first — then the rest becomes patterns, not memorization.</p>
+  <div class="trigger-grid">
+    <div class="trigger sexy">
+      <div class="name">Sexy Move</div>
+      <div class="moves">R U R' U'</div>
+    </div>
+    <div class="trigger revsexy">
+      <div class="name">Reverse Sexy</div>
+      <div class="moves">U R U' R'</div>
+    </div>
+    <div class="trigger sledge">
+      <div class="name">Sledgehammer</div>
+      <div class="moves">R' F R F'</div>
+    </div>
+    <div class="trigger hedge">
+      <div class="name">Hedgeslammer</div>
+      <div class="moves">F R' F' R</div>
+    </div>
+    <div class="trigger fruruf">
+      <div class="name">Fruruf</div>
+      <div class="moves">F R U R' U' F'</div>
+    </div>
+    <div class="trigger fatfruruf">
+      <div class="name">Fat Fruruf</div>
+      <div class="moves">f R U R' U' f'</div>
+    </div>
+    <div class="trigger sune">
+      <div class="name">Sune</div>
+      <div class="moves">R U R' U R U2 R'</div>
+    </div>
+    <div class="trigger sune">
+      <div class="name">Antisune</div>
+      <div class="moves">R U2 R' U' R U' R'</div>
+    </div>
+  </div>
+</div>
+
+<!-- TWO COLUMNS -->
+<div class="columns">
+
+<!-- ===================== 2-LOOK OLL ===================== -->
+<section class="col">
+  <h2>2-Look OLL</h2>
+  <p class="col-sub">Orient the last layer in 2 steps: edges first (make the cross), then corners.</p>
+
+  <div class="group-label">Step 1 · Edges (make the cross)</div>
+
+  <!-- Dot -->
+  <div class="case">
+    <img src="images/oll-dot.png" alt="Dot shape">
+    <div class="case-body">
+      <div class="case-name">Dot</div>
+      <div class="alg">F R U R' U' F' f R U R' U' f'</div>
+      <div class="breakdown">
+        <span class="chunk fruruf">Fruruf</span>
+        <span class="chunk fatfruruf">Fat Fruruf</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- I-Shape -->
+  <div class="case">
+    <img src="images/oll-ishape.png" alt="I-shape (line)">
+    <div class="case-body">
+      <div class="case-name">I-Shape (Line)</div>
+      <div class="alg">F R U R' U' F'</div>
+      <div class="breakdown">
+        <span class="chunk fruruf">Fruruf</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- L-Shape -->
+  <div class="case">
+    <img src="images/oll-lshape.png" alt="L-shape">
+    <div class="case-body">
+      <div class="case-name">L-Shape</div>
+      <div class="alg">f R U R' U' f'</div>
+      <div class="breakdown">
+        <span class="chunk fatfruruf">Fat Fruruf</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="group-label">Step 2 · Corners (finish the yellow face)</div>
+
+  <!-- Sune -->
+  <div class="case">
+    <img src="images/oll-sune.png" alt="Sune">
+    <div class="case-body">
+      <div class="case-name">Sune</div>
+      <div class="alg">R U R' U R U2 R'</div>
+      <div class="breakdown">
+        <span class="chunk sune">Sune</span>
+        <span class="chunk bare">=</span>
+        <span class="chunk neutral">R U R'</span>
+        <span class="chunk bare">U</span>
+        <span class="chunk neutral">R U2 R'</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Antisune -->
+  <div class="case">
+    <img src="images/oll-antisune.png" alt="Antisune">
+    <div class="case-body">
+      <div class="case-name">Antisune</div>
+      <div class="alg">R U2 R' U' R U' R'</div>
+      <div class="breakdown">
+        <span class="chunk sune">Antisune</span>
+        <span class="chunk bare">=</span>
+        <span class="chunk neutral">R U2 R'</span>
+        <span class="chunk bare">U'</span>
+        <span class="chunk neutral">R U' R'</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- H -->
+  <div class="case">
+    <img src="images/oll-h.png" alt="H / Double Sune">
+    <div class="case-body">
+      <div class="case-name">H (Double Sune)</div>
+      <div class="alg">R U R' U R U' R' U R U2 R'</div>
+      <div class="breakdown">
+        <span class="chunk neutral">R U R'</span>
+        <span class="chunk bare">U</span>
+        <span class="chunk neutral">R U' R'</span>
+        <span class="chunk bare">U</span>
+        <span class="chunk neutral">R U2 R'</span>
+      </div>
+      <div class="note">Rhythm: three "R _ R'" chunks separated by U turns.</div>
+    </div>
+  </div>
+
+  <!-- Pi -->
+  <div class="case">
+    <img src="images/oll-pi.png" alt="Pi">
+    <div class="case-body">
+      <div class="case-name">Pi (Bruno)</div>
+      <div class="alg">R U2 R2 U' R2 U' R2 U2 R</div>
+      <div class="breakdown">
+        <span class="chunk neutral">R U2</span>
+        <span class="chunk neutral">R2 U' R2 U' R2</span>
+        <span class="chunk neutral">U2 R</span>
+      </div>
+      <div class="note">No named triggers — palindromic structure with R2/U' repeats in the middle.</div>
+    </div>
+  </div>
+
+  <!-- T -->
+  <div class="case">
+    <img src="images/oll-t.png" alt="T">
+    <div class="case-body">
+      <div class="case-name">T</div>
+      <div class="alg">r U R' U' r' F R F'</div>
+      <div class="breakdown">
+        <span class="chunk sexy">r U R' U' r'</span>
+        <span class="chunk neutral">F R F'</span>
+      </div>
+      <div class="note">First chunk is a "fat sexy" (wide r instead of R).</div>
+    </div>
+  </div>
+
+  <!-- U -->
+  <div class="case">
+    <img src="images/oll-u.png" alt="U">
+    <div class="case-body">
+      <div class="case-name">U (Headlights)</div>
+      <div class="alg">R2 D R' U2 R D' R' U2 R'</div>
+      <div class="breakdown">
+        <span class="chunk neutral">R2</span>
+        <span class="chunk bare">D</span>
+        <span class="chunk neutral">R' U2 R</span>
+        <span class="chunk bare">D'</span>
+        <span class="chunk neutral">R' U2 R'</span>
+      </div>
+      <div class="note">D / D' wrap two similar (R' U2 R) patterns — it's a conjugate.</div>
+    </div>
+  </div>
+
+  <!-- L -->
+  <div class="case">
+    <img src="images/oll-l.png" alt="L">
+    <div class="case-body">
+      <div class="case-name">L</div>
+      <div class="alg">F R' F' r U R U' r'</div>
+      <div class="breakdown">
+        <span class="chunk sledge">F R' F'</span>
+        <span class="chunk neutral">r U R U' r'</span>
+      </div>
+      <div class="note">Sledgehammer's first 3 moves + a fat "sexy-like" finish.</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================== 2-LOOK PLL ===================== -->
+<section class="col">
+  <h2>2-Look PLL</h2>
+  <p class="col-sub">Permute the last layer in 2 steps: corners first, then edges.</p>
+
+  <div class="group-label">Step 1 · Corners (2 cases)</div>
+
+  <!-- Adjacent Corner Swap (T-perm) -->
+  <div class="case">
+    <img src="images/pll-t.png" alt="T-perm">
+    <div class="case-body">
+      <div class="case-name">Adjacent Swap (T-perm)</div>
+      <div class="alg">R U R' U' R' F R2 U' R' U' R U R' F'</div>
+      <div class="breakdown">
+        <span class="chunk sexy">R U R' U'</span>
+        <span class="chunk neutral">R' F R2 U' R'</span>
+        <span class="chunk neutral">U' R U R'</span>
+        <span class="chunk bare">F'</span>
+      </div>
+      <div class="note">Starts with sexy move. Use when two adjacent corners need to swap.</div>
+    </div>
+  </div>
+
+  <!-- Diagonal Corner Swap (Y-perm) -->
+  <div class="case">
+    <img src="images/pll-y.png" alt="Y-perm">
+    <div class="case-body">
+      <div class="case-name">Diagonal Swap (Y-perm)</div>
+      <div class="alg">F R U' R' U' R U R' F' R U R' U' R' F R F'</div>
+      <div class="breakdown">
+        <span class="chunk bare">F</span>
+        <span class="chunk neutral">R U' R' U' R U R'</span>
+        <span class="chunk bare">F'</span>
+        <span class="chunk sexy">R U R' U'</span>
+        <span class="chunk sledge">R' F R F'</span>
+      </div>
+      <div class="note">Ends with sexy + sledgehammer. Use when diagonal corners need to swap.</div>
+    </div>
+  </div>
+
+  <div class="group-label">Step 2 · Edges (4 cases)</div>
+
+  <!-- Ua -->
+  <div class="case">
+    <img src="images/pll-ua.svg" alt="Ua perm">
+    <div class="case-body">
+      <div class="case-name">Ua-Perm</div>
+      <div class="alg">M2 U M U2 M' U M2</div>
+      <div class="breakdown">
+        <span class="chunk neutral">M2</span>
+        <span class="chunk bare">U</span>
+        <span class="chunk neutral">M</span>
+        <span class="chunk bare">U2</span>
+        <span class="chunk neutral">M'</span>
+        <span class="chunk bare">U</span>
+        <span class="chunk neutral">M2</span>
+      </div>
+      <div class="note">Pure M-slice + U rhythm. 3 edges cycle counter-clockwise (viewed from top).</div>
+    </div>
+  </div>
+
+  <!-- Ub -->
+  <div class="case">
+    <img src="images/pll-ub.svg" alt="Ub perm">
+    <div class="case-body">
+      <div class="case-name">Ub-Perm</div>
+      <div class="alg">M2 U' M U2 M' U' M2</div>
+      <div class="breakdown">
+        <span class="chunk neutral">M2</span>
+        <span class="chunk bare">U'</span>
+        <span class="chunk neutral">M</span>
+        <span class="chunk bare">U2</span>
+        <span class="chunk neutral">M'</span>
+        <span class="chunk bare">U'</span>
+        <span class="chunk neutral">M2</span>
+      </div>
+      <div class="note">Exact inverse of Ua: swap every U for U'. 3 edges cycle clockwise.</div>
+    </div>
+  </div>
+
+  <!-- H -->
+  <div class="case">
+    <img src="images/pll-h.png" alt="H perm">
+    <div class="case-body">
+      <div class="case-name">H-Perm</div>
+      <div class="alg">M2 U M2 U2 M2 U M2</div>
+      <div class="breakdown">
+        <span class="chunk neutral">M2</span>
+        <span class="chunk bare">U</span>
+        <span class="chunk neutral">M2</span>
+        <span class="chunk bare">U2</span>
+        <span class="chunk neutral">M2</span>
+        <span class="chunk bare">U</span>
+        <span class="chunk neutral">M2</span>
+      </div>
+      <div class="note">All M2s. Symmetric — opposite edges swap in pairs.</div>
+    </div>
+  </div>
+
+  <!-- Z -->
+  <div class="case">
+    <img src="images/pll-z.png" alt="Z perm">
+    <div class="case-body">
+      <div class="case-name">Z-Perm</div>
+      <div class="alg">M2 U M2 U M' U2 M2 U2 M'</div>
+      <div class="breakdown">
+        <span class="chunk neutral">M2 U M2 U</span>
+        <span class="chunk neutral">M'</span>
+        <span class="chunk bare">U2</span>
+        <span class="chunk neutral">M2</span>
+        <span class="chunk bare">U2</span>
+        <span class="chunk neutral">M'</span>
+      </div>
+      <div class="note">Adjacent edges swap in pairs. Recognize by "checkerboard" side colors.</div>
+    </div>
+  </div>
+
+</section>
+
+</div>
+
+<footer>
+  Triggers color-coded throughout · Images rendered by VisualCube · Built for CFOP 2-look practice · Click any case to highlight it
+</footer>
+
+<script>
+(function () {
+  const KEY = 'oll-pll-active-case';
+  const cases = document.querySelectorAll('.case');
+  const keyFor = (el) => {
+    const name = el.querySelector('.case-name');
+    return name ? name.textContent.trim() : null;
+  };
+  let active = null;
+  try { active = localStorage.getItem(KEY); } catch (e) {}
+
+  const save = () => { try { active ? localStorage.setItem(KEY, active) : localStorage.removeItem(KEY); } catch (e) {} };
+
+  cases.forEach((el) => {
+    const k = keyFor(el);
+    if (k && k === active) el.classList.add('active');
+    el.addEventListener('click', () => {
+      const wasActive = el.classList.contains('active');
+      cases.forEach((c) => c.classList.remove('active'));
+      if (!wasActive) {
+        el.classList.add('active');
+        active = k;
+      } else {
+        active = null;
+      }
+      save();
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
